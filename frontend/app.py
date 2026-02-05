@@ -13,6 +13,9 @@ from backend.docstring_generator import synthesize_docstring
 st.set_page_config(layout="wide")
 st.title("Automated Python Docstring Generator & Validator")
 st.caption("Milestone-2 · Generation · Coverage · PEP-257 Compliance")
+st.title("Docstring Review & Enforcement Dashboard")
+st.caption("Automated • Pre-Commit Ready • CI-Friendly")
+
 
 uploaded = st.file_uploader("Upload Python file", type=["py"])
 style = st.selectbox("Docstring Style", ["Google", "NumPy", "reST"])
