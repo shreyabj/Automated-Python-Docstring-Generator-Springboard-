@@ -14,7 +14,7 @@ def generate_random_numbers(n):
 
 
 def calculate_average(numbers):
-    """Calculate the average of a list of numbers."""
+  
     if not numbers:
         return 0
     return sum(numbers) / len(numbers)
@@ -29,7 +29,7 @@ def find_maximum(numbers):
 # ---------------------------
 
 class DataProcessor:
-    """Handles basic data processing tasks."""
+  
 
     def __init__(self, data):
         self.data = data
