@@ -39,7 +39,7 @@ class DataProcessor:
         return [x / max_val for x in self.data]
 
     def square_values(self):
-        """Squares each value in the dataset."""
+      
         return [x ** 2 for x in self.data]
 
 
@@ -53,7 +53,7 @@ class SimpleModel:
         self.threshold = threshold
 
     def predict(self, value):
-        """Predict based on threshold comparison."""
+        
         return value > self.threshold
 
     def batch_predict(self, values):
