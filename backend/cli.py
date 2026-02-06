@@ -1,5 +1,7 @@
 import sys
-from backend.validator import run_pydocstyle
+import subprocess
+import tempfile
+import os
 
 def main():
     if len(sys.argv) < 2:
@@ -8,20 +10,19 @@ def main():
 
     file_path = sys.argv[1]
 
-    with open(file_path, "r", encoding="utf-8") as f:
-        code = f.read()
+    # Run pydocstyle directly and capture exit code
+    result = subprocess.run(
+        ["pydocstyle", file_path],
+        capture_output=True,
+        text=True
+    )
 
-    # STRICT enforcement for Milestone 3
-    # Any PEP-257 violation = FAIL
-    result = run_pydocstyle(code, expected_count=1000)
-
-    if result["status"] != "PASS":
-        print("❌ Docstring validation failed")
-        for v in result.get("violations", []):
-            print(v["raw"])
+    if result.returncode != 0:
+        print("❌ Docstring validation failed (PEP 257 violations detected):")
+        print(result.stdout)
         sys.exit(1)
 
-    print("✅ Docstring validation passed")
+    print("✅ Docstring validation passed (PEP 257 compliant)")
     sys.exit(0)
 
 if __name__ == "__main__":
