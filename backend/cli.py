@@ -11,14 +11,13 @@ def main():
     with open(file_path, "r", encoding="utf-8") as f:
         code = f.read()
 
-    # Simple expected docstring count (Milestone 3 level)
-    expected_docstrings = 1  # module
+    # STRICT enforcement for Milestone 3
+    # Any PEP-257 violation = FAIL
+    result = run_pydocstyle(code, expected_count=1000)
 
-    result = run_pydocstyle(code, expected_docstrings)
-
-    if result["status"] == "WARN":
+    if result["status"] != "PASS":
         print("❌ Docstring validation failed")
-        for v in result["violations"]:
+        for v in result.get("violations", []):
             print(v["raw"])
         sys.exit(1)
 
